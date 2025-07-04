@@ -1,0 +1,32 @@
+networks:
+  appnet:
+
+services:
+
+  mojangtilu:
+    build: .
+    networks:
+      - appnet
+    container_name: mojangtilu-appsdock
+    ports:
+      - "8200:80"
+    volumes:
+      - ./html/mojangtilu:/var/www/html
+    environment:
+      - APACHE_RUN_USER=www-data
+      - APACHE_RUN_GROUP=www-data
+
+  mariadb:
+    image: mariadb:10.5
+    container_name: mariadb
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: H4l0B4nd03ng!
+      MYSQL_USER: userapps
+      MYSQL_PASSWORD: userapps
+    ports:
+      - "3900:3306"
+    volumes:
+      - ./mysql-data:/var/lib/mysql
+    networks:
+      - appnet
