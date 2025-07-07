@@ -7,7 +7,7 @@ services:
     build: .
     networks:
       - appnet
-    container_name: mojangtilu-appsdock
+    container_name: mojangtilu-apps
     ports:
       - "8200:80"
     volumes:
